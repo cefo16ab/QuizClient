@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="lib/css/bootstrap.css">
+    <link rel="stylesheet" href="css/main.css">
+
+    <meta charset="UTF-8">
+    <title>user-page</title>
+</head>
+<body>
+
+
+<div class="container">
+
+    <div class="row" id="nav-container"></div>
+
+    <div class="row">
+        <div class="col-lg-12" >
+            <div class="jumbotron">
+                <div class="box">
+
+                    <h2 class="quiz-button">Choose course</h2>
+
+
+                    <button type="button" class="btn btn-success quiz-button" id="dis-button">Distribuerede Systemer</button>
+                    <BR><BR>
+
+                    <button type="button" class="btn btn-success quiz-button" id="it-change-button">IT-Forandringsledelse</button>
+                    <BR><BR>
+
+                    <button type="button" class="btn btn-success quiz-button" id="makro-button">Makroøkonomi</button>
+                    <BR><BR>
+                    <!--<a class="btn btn-success" href="choose-quiz.html" role="button"id="makro-button">Makroøkonomi</a> !-->
+
+                    <button type="button" class="btn btn-success quiz-button" id="finance-button">Finansiering</button>
+
+
+                    <table class="table" id="quiz-table" style="display: none;">
+
+                        <thead>
+
+                        <tr>
+
+                            <th>Choose quiz</th>
+
+                        </tr>
+                        </thead>
+                        <tbody id="basket-tbody">
+
+                        <!--class="btn-group-vertical" role="group" aria-label="..."!-->
+
+
+                            <tr>
+
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script src="lib/js/jquery-3.2.1.js"></script>
+<script src="lib/js/bootstrap.js"></script>
+<script src="js/sdk.js"></script>
+<script src="js/user-page.js"></script>
+<script>
+    SDK.User.loadNav();
+</script>
+
+</body>
+</html>

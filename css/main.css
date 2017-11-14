@@ -1,0 +1,46 @@
+nav {
+    margin-bottom: 25px;
+    margin-top: 20px;
+}
+
+dd {
+    margin-bottom: 10px;
+}
+
+.book-container .panel-body {
+    min-height: 242px;
+}
+.book-container img {
+    height: 120px;
+}
+.book-container .price-label {
+    font-size: 1.4em;
+    font-weight: bold;
+}
+
+.book-container .price-label p {
+    margin: 4px 0 0 0;
+}
+
+.login-container {
+    padding: 150px 0px 0px 90px;
+    display: flex;
+    justify-content: center;
+}
+
+.flex-box .input-w {
+    display: flex;
+    flex-direction: row;
+}
+
+.box {
+    margin: auto;
+    padding: 25px 50px;
+    width: 350px;
+    min-height: 115px;
+    background: #fff;
+    border-left: 5px solid #9b2;
+    box-shadow: 0 0 20px rgba(0,0,0,.15);
+    font: 12px/15px Arial, Helvetica, sans-serif;
+    color: #666;
+}
