@@ -16,10 +16,13 @@ $(document).ready(() => {
               console.log("BAd stuff happened")
           } else {
 
-            if(data.type == 1) {
+
+            if(data.type === 1) {
+
                 window.location.href = "user-page.html"
 
             } else {
+
                 window.location.href = "admin-page.html";
                 console.log(data);
             }
