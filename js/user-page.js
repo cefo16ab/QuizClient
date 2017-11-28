@@ -34,7 +34,7 @@ $(document).ready(() => {
 
                 $basketTbody.append(`
                     <tr>
-                        <td>${quiz.quizTitle}</td>
+                        <td><a href="quiz-page.html?quizId=${quiz.quizId}">${quiz.quizTitle}</a></td>
                
                     </tr>
                     `);
@@ -56,7 +56,7 @@ $(document).ready(() => {
 
                 $basketTbody.append(`
                     <tr>
-                        <td>${quiz.quizTitle}</td>
+                        <td><a href="quiz-page.html?quizId=${quiz.quizId}">${quiz.quizTitle}</a></td>
                
                     </tr>
                     `);
@@ -77,7 +77,7 @@ $(document).ready(() => {
 
                 $basketTbody.append(`
                     <tr>
-                        <td>${quiz.quizTitle}</td>
+                        <td><a href="quiz-page.html?quizId=${quiz.quizId}">${quiz.quizTitle}</a></td>
                
                     </tr>
                     `);

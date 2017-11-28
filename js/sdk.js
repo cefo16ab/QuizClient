@@ -1,4 +1,7 @@
+
 const SDK = {
+
+    // kode taget fra linket: https://stackoverflow.com/questions/19491336/get-url-parameter-jquery-or-how-to-get-query-string-values-in-js
     getQueryParam: (sParam) => {
         var sPageURL = decodeURIComponent(window.location.search.substring(1)),
             sURLVariables = sPageURL.split('&'),
@@ -94,14 +97,27 @@ const SDK = {
         }
     },
     Quiz: {
-        create: (data, cb) => {
+        createQuiz: (courseId, quizTitle, cb) => {
             SDK.request({
                 method: "POST",
                 url: "/quiz",
-                data: data,
+                data: {
+                    courseId: courseId,
+                    quizTitle: quizTitle,
+                },
+            }, (err, data) => {
 
-            }, cb);
+                //On login-error
+                if (err) return cb(err);
+                console.log(err);
+
+                SDK.Storage.persist("courseId", data.courseId);
+                SDK.Storage.persist("quizTitle", data.quizTitle);
+
+                cb(null, data);
+            });
         },
+
         findById: (id, cb) => {
             SDK.request({
                 method: "GET",
@@ -109,6 +125,26 @@ const SDK = {
             }, cb);
         }
     },
+    Choice: {
+        createChoice: (data, cb) => {
+            SDK.request({
+                method: "POST",
+                url: "/choice",
+                data: data,
+
+            }, cb);
+        }
+    },
+        question: {
+            createQuestion: (data, cb) => {
+                SDK.request({
+                    method: "POST",
+                    url: "/question",
+                    data: data,
+
+                }, cb);
+            }
+        },
     User: {
         findAll: (cb) => {
             SDK.request({method: "GET", url: "/staffs"}, cb);

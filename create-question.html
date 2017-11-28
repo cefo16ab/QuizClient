@@ -2,13 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>DOEK QUIZ</title>
 
     <link rel="stylesheet" href="lib/css/bootstrap.css">
     <link rel="stylesheet" href="css/main.css">
+
 </head>
 <body>
-
 
 
 <div class="container">
@@ -18,40 +18,38 @@
     <div class="row">
         <div class="col-lg-12" >
             <div class="jumbotron">
-                <div class="box">
 
-                    <h2>Choose quiz</h2>
-
-
-                    <table class="table">
-                        <thead>
-                        <tr>
-                            <th>Quiz</th>
-
-                        </tr>
-                        </thead>
-                        <tbody id="basket-tbody">
+                <h1>New Question</h1>
 
 
-                        </tbody>
-                    </table>
+                <input type="text" class="form-control" placeholder="Question" id="inputQuestion" aria-describedby="sizing-addon1">
+<br>
+                <button  class="btn btn-success" id="new-question">Add question</button>
 
 
-                </div>
+
+                </input>
+
+
+
+
             </div>
-
         </div>
+
     </div>
 </div>
+
+
+
+
+
 
 <script src="lib/js/jquery-3.2.1.js"></script>
 <script src="lib/js/bootstrap.js"></script>
 <script src="js/sdk.js"></script>
-<script src="js/choose-quiz.js"></script>
+<script src="js/create-question.js"></script>
 <script>
     SDK.User.loadNav();
 </script>
-
-
 </body>
 </html>

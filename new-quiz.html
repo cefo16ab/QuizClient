@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="css/main.css">
 
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Exam Quiz</title>
 </head>
 <body>
 
@@ -19,19 +19,27 @@
         <div class="col-lg-12" >
             <div class="jumbotron">
 
-                    <h1>New quiz</h1>
+
+                <h1>Choose Course</h1>
+                <select class="custom-select">
+                    <option selected>Choose your option</option>
+                    <option value=1>Distribuerede Systemer</option>
+                    <option value=2>IT-Forandringsledelse</option>
+                    <option value=3>Makroøkonomi</option>
+                    <option value=4>Finansiering</option>
+                </select>
+
+                    <h1>Quiz title</h1>
+
+                    <input type="text" class="form-control" placeholder="Quiz title" id= "inputQuizTitle" aria-describedby="sizing-addon1">
 
 
-                    <input type="text" class="form-control add-quiz" placeholder="Question" id="inputQuestion" aria-describedby="sizing-addon1">
-                    <BR>
-                    <input type="text" class="form-control add-quiz" placeholder="True answer" id= "inputTrueAnswer" aria-describedby="sizing-addon1">
-                    <input type="text" class="form-control add-quiz" placeholder="False answer" id= "inputFalseAnswer1" aria-describedby="sizing-addon1">
-                    <input type="text" class="form-control add-quiz" placeholder="False answer" id= "inputFalseAnswer2" aria-describedby="sizing-addon1">
-                    <input type="text" class="form-control add-quiz" placeholder="False answer" id= "inputFalseAnswer3" aria-describedby="sizing-addon1">
-                    <BR>
-                     <button style="margin-bottom: 40px" class="btn btn-success" id="new-question">Add question</button>
+                    <br>
 
-                    <button style="margin-bottom: 40px" class="btn btn-success" id="create-quiz-button">Create quiz</button>
+                 <button type="button" class="btn btn-success" id="create-Title-Button">Next</button>
+                <button type="button" class="btn btn-success" id="cancelQuiz">Cancel</button>
+
+
                 </div>
             </div>
 
@@ -42,7 +50,7 @@
 <script src="lib/js/jquery-3.2.1.js"></script>
 <script src="lib/js/bootstrap.js"></script>
 <script src="js/sdk.js"></script>
-<script src="js/new-quiz.js.js"></script>
+<script src="js/new-quiz.js"></script>
 <script>
     SDK.User.loadNav();
 </script>
