@@ -6,4 +6,5 @@ $(document).ready(() => {
     SDK.getQueryParam("quizId")
 
 
+
 });

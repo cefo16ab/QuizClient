@@ -1,4 +1,3 @@
-
 const SDK = {
 
     // kode taget fra linket: https://stackoverflow.com/questions/19491336/get-url-parameter-jquery-or-how-to-get-query-string-values-in-js
@@ -118,6 +117,55 @@ const SDK = {
             });
         },
 
+
+        createQuestion: (quizId, questionTitle, cb) => {
+            SDK.request({
+                method: "POST",
+                url: "/question",
+                data: {
+                    quizId: quizId,
+                    questionTitle: questionTitle,
+                },
+            }, (err, data) => {
+
+                //On login-error
+                if (err) return cb(err);
+                console.log(err);
+
+                //SDK.Storage.persist("questionId", data.courseId);
+                //SDK.Storage.persist("questionTitle", data.questionTitle);
+
+                cb(null, data);
+            });
+        },
+
+        createChoice: (questionId, choiceTitle, answer, cb) => {
+            SDK.request({
+                method: "POST",
+                url: "/choice",
+                data: {
+                    questionId: questionId,
+                    choiceTitle: choiceTitle,
+                    answer: answer,
+                },
+            }, (err, data) => {
+
+                //On login-error
+                if (err) return cb(err);
+                console.log(err);
+
+                //SDK.Storage.persist("questionId", data.courseId);
+                //SDK.Storage.persist("questionTitle", data.questionTitle);
+
+                cb(null, data);
+            });
+        },
+
+
+        currentQuiz: () => {
+            return SDK.Storage.load("quizId");
+        },
+
         findById: (id, cb) => {
             SDK.request({
                 method: "GET",
@@ -135,16 +183,16 @@ const SDK = {
             }, cb);
         }
     },
-        question: {
-            createQuestion: (data, cb) => {
-                SDK.request({
-                    method: "POST",
-                    url: "/question",
-                    data: data,
+    question: {
+        createQuestion: (data, cb) => {
+            SDK.request({
+                method: "POST",
+                url: "/question",
+                data: data,
 
-                }, cb);
-            }
-        },
+            }, cb);
+        }
+    },
     User: {
         findAll: (cb) => {
             SDK.request({method: "GET", url: "/staffs"}, cb);

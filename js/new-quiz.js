@@ -7,6 +7,9 @@ $(document).ready(() => {
 
 
         SDK.Quiz.createQuiz(courseId, quizTitle, (err, data) => {
+
+            data = JSON.parse(data);
+
             console.log(err);
             if (err && err.xhr.status === 401) {
                 $(".form-group").addClass("has-error");
@@ -14,7 +17,7 @@ $(document).ready(() => {
             else if (err) {
                 console.log("BAd stuff happened")
             } else {
-               // window.location.href = ("create-question.html");
+               window.location.href = ("create-question.html?quizId=" + data.quizId);
                 //"create-question.html"
                 const quizId = SDK.getQueryParam("quizId");
 
