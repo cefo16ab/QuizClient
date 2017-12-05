@@ -17,7 +17,10 @@ $(document).ready(() => {
                 $basketTbody.append(`
                     <tr>
                         <td><a href="quiz-page.html?quizId=${quiz.quizId}">${quiz.quizTitle}</a></td>
+                      
+                       <td <a>${quiz.quizId}</a></td>
                        
+                       <td width="20%"><button class="quizDelBtn btn btn-danger pull-left">Delete quiz</button></td></tr>\`);
                     </tr>
                     `);
 

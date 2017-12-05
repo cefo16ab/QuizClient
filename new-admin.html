@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <link rel="stylesheet" href="lib/css/bootstrap.css">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+<div class="container">
+
+    <div class="row" id="nav-container"></div>
+
+    <div class="row">
+        <div class="col-lg-12" >
+            <div class="jumbotron">
+                <div class="box">
+
+                    <h2>Create new account</h2>
+
+                    <label class="control-label" for="inputFirstname">Firstname</label>
+                    <input type="Firstname" class="form-control" id="inputFirstname" placeholder="Firstname">
+
+                    <label class="control-label" for="inputLastname">Lastname</label>
+                    <input type="Lastname" class="form-control" id="inputLastname" placeholder="Lastname">
+
+                    <label class="control-label" for="inputUsername">Username</label>
+                    <input type="Username" class="form-control" id="inputUsername" placeholder="Username">
+
+                    <label class="control-label" for="inputPassword">Password</label>
+                    <input type="Password" class="form-control" id="inputPassword" placeholder="Password">
+                    <br> <br>
+
+
+                    <button type="button" class="btn btn-success" id="submitUser">Submit</button>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script src="lib/js/jquery-3.2.1.js"></script>
+<script src="lib/js/bootstrap.js"></script>
+<script src="js/sdk.js"></script>
+<script src="js/new-admin.js"></script>
+<script>
+    SDK.User.loadNav();
+</script>
+
+
+</body>
+</html>

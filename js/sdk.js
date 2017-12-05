@@ -173,6 +173,44 @@ const SDK = {
             }, cb);
         }
     },
+
+
+    loadQuestions: (quizId,questionId, questionTitle, callback) =>{
+        //Loading the selected quiz's id from local storage
+        const SelectedQuestionTitle = SDK.Storage.load("SelectedQuizTitle");
+        const questionTitle = SelectedQuestionTitle.questionTitle;
+
+        SDK.request({
+            method: "GET",
+            url: "/question/",
+            data: {
+                quizId: quizId,
+                questionId: questionId,
+                questionTitle: questionTitle,
+
+            },
+
+
+        }, (err, data) => {
+            if (err) return callback(err);
+            callback(null, data);
+        });
+    },
+
+    //Request for loading options for specific question
+    loadChoices: (questionId, cb) => {
+        SDK.request({
+            method: "GET",
+            url: "/choice/" + questionId,
+
+
+        }, (err, options) => {
+            if (err) return cb(err);
+            cb(null, options)
+        });
+    },
+
+
     Choice: {
         createChoice: (data, cb) => {
             SDK.request({
@@ -200,11 +238,17 @@ const SDK = {
         current: () => {
             return SDK.Storage.load("user");
         },
-        create: (data, cb) => {
+        createUser: (firstName, lastName, userName, password, type, cb) => {
             SDK.request({
                 method: "POST",
-                url: "/user",
-                data: data,
+                url: "/user/",
+                data: {
+                    firstName: firstName,
+                    lastName: lastName,
+                    username: userName,
+                    password: password,
+                    type: type,
+                }
             }, cb);
         },
         logOut: () => {
