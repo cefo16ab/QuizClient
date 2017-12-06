@@ -173,7 +173,21 @@ const SDK = {
             }, cb);
         }
     },
+    deleteQuiz: (quizId, cb) => {
+        //Loading the selected course's id from local storage
+        //const selectedQuiz = SDK.Storage.load("selectedQuiz")
+        //const quizId = selectedQuiz.quizId;
 
+        SDK.request({
+            method: "DELETE",
+            url: "/quiz" + "/" + quizId,
+
+
+        }, (err, data) => {
+            if (err) return cb(err);
+            cb(null, data)
+        });
+    },
 
     loadQuestions: (quizId,questionId, questionTitle, callback) =>{
         //Loading the selected quiz's id from local storage

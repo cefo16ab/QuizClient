@@ -16,6 +16,7 @@ $(document).ready(() => {
                 $basketTbody.append(`
                     <tr>
                         <td><a href="quiz-page.html?quizId=${quiz.quizId}">${quiz.quizTitle}</a></td>
+                       
                     </tr>
                     `);
             });
