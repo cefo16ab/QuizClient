@@ -189,18 +189,15 @@ const SDK = {
                     cb(null,data);
                 })
         },
-        loadQuestions: (callback) =>{
+        loadQuestions: (quizId, callback) =>{
             //Loading the selected quiz's id from local storage
-            const selectedQuiz = SDK.Storage.load("selectedQuiz");
-            const quizId = selectedQuiz.quizId;
+
+
 
             SDK.request({
                 method: "GET",
                 url: "/question/" + quizId,
-                headers: {
-                    //Header for authorization in server
-                    //authorization: SDK.Storage.load("myToken"),
-                },
+
             }, (err, data) => {
                 if (err) return callback(err);
                 callback(null, data);
@@ -225,7 +222,12 @@ const SDK = {
             }, cb);
         },
 
-
+        findChoiceById: (id, cb) => {
+            SDK.request({
+                method: "GET",
+                url: "/choice" + "/" + id,
+            }, cb);
+        },
 
 
     //Request for loading options for specific question

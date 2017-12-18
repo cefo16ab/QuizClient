@@ -3,20 +3,57 @@ $(document).ready(() => {
     SDK.User.loadNav();
 
 
-    SDK.getQueryParam("quizId")
-    SDK.getQueryParam("quizTitle")
+    let quizId = SDK.getQueryParam("quizId");
+    let title = SDK.getQueryParam("title");
+    console.log("myQuizId",quizId);
+    //) SDK.getQueryParam("quizTitle")
 
 
-        $("#resultBtn").hide()
+    $("#resultBtn").hide()
+    $("#QuestionList").show();
+    //SDK request for loading selected quiz from local storage
 
-        //SDK request for loading selected quiz from local storage
-        const selectedQuiz = SDK.Storage.load("selectedQuiz");
-        $(".page-header").html(`<h1>${SDK.getQueryParam("quizId")}</h1>`);
-        $(".description").html(`<h4>${selectedQuiz.quizTitle}</h4>`);
 
-    SDK.Quiz.loadQuestions((err, data) => {
+    $(".page-header").html(`<h1>${quizId}</h1>`);
+    $(".description").html(`<h4>${title}</h4>`);
+
+
+    SDK.Quiz.findQuestionById(quizId, (err, data) => {
+        let questions = JSON.parse(data);
         if (err) throw err;
+        questions.forEach(question => {
+            console.log(question);
+            //todo: print question
+            $(".table").append(`<div style="color:blue;" id="${question.questionId}"><p><b>${question.questionTitle}</b></p></div>`)
+
+            SDK.Quiz.findChoiceById(question.questionId, (err, data) => {
+                let choices = JSON.parse(data);
+                if (err) throw err;
+                choices.forEach(choice => {
+                    console.log(choice);
+
+
+                    $("#"+question.questionId).append(`<p><input type="radio" class="custom-control-input" name="${choice.choiceId}" value="${choice.answer}"> ${choice.choiceTitle} </p>  `)
+
+                    //todo: print choice
+
+            });
+
+
+
+        });
+
+
+    });
+        console.log("DONE loading questions");
+
+/*
+SDK.Quiz.loadQuestions((err, data) => {
+        console.log("1");
+        if (err) throw err;
+        console.log("1");
         var questions = JSON.parse(data);
+        console.log("2",questions);
 
         //For each loop for adding all the questions to the table
         questions.forEach((q) => {
@@ -37,7 +74,8 @@ $(document).ready(() => {
                     $(`#${questionId}`).append(`<p><input type="radio" class="answer-radio" name="choice${questionId}" value="${option.answer}"> ${option.option} </p>`);
                 });
             });
-        });
+        });*/
+
 
         //Listener on return button
         $("#returnBtn").on("click", () => {
@@ -57,9 +95,9 @@ $(document).ready(() => {
 
 
             });
+    });
 
 
-        });
 
     });
 

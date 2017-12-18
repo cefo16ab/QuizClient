@@ -23,7 +23,7 @@ $(document).ready(() => {
             else if (err) {
                 console.log("BAd stuff happened")
             } else {
-                window.location.href = ("create-choice.html?questionId=" + data.questionId);
+                window.location.href = ("create-choice.html?questionId=" + data.questionId + "&quizId=" + data.quizId);
                 //"create-question.html"
                 const quizId = SDK.getQueryParam("questionId");
 

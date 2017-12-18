@@ -15,7 +15,8 @@ $(document).ready(() => {
 
         SDK.Quiz.createChoice(questionId, choiceTitle, answer,(err, data) => {
 console.log(data);
-                data = JSON.parse(data);
+            data = JSON.parse(data);
+
 
                 if (err && err.xhr.status === 401) {
                     $(".form-group").addClass("has-error");
@@ -25,20 +26,19 @@ console.log(data);
                 } else {
                     //refresh($("#inputChoice"));
                     alert("You have now saved the choice. You can now write a new one");
-                    window.location.href = ("create-choice.html?questionId=" + data.questionId);
+                    window.location.href = ("create-choice.html?questionId=" + data.questionId + "&quizId=" + data.quizId);
 
                     const questionId = SDK.getQueryParam("questionId");
-
+                    const quizId = SDK.getQueryParam("quizId");
                 }
 
         });
-        const chosenQuiz = SDK.Storage.load("quizId");
 
+    });
         $("#back-to-create-question").click(() => {
 
-                    window.location.href = ("create-question.html?quizId=" + Storage.load("quizId"));
-                    const quizId = SDK.getQueryParam("quizId");
-
+            window.location.href = ("create-question.html?quizId=" + data.quizId);
+            //const quizId = SDK.getQueryParam("quizId");
         });
 
 
@@ -51,7 +51,7 @@ console.log(data);
 
         });
 
-    });
+
 
 });
 
