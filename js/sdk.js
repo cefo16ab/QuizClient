@@ -161,6 +161,51 @@ const SDK = {
             });
         },
 
+        deleteQuiz: (id, cb) => {
+            //Loading the selected course's id from local storage
+            //const selectedQuiz = SDK.Storage.load("selectedQuiz")
+            //const quizId = selectedQuiz.quizId;
+            //const selectedQuiz = SDK.Storage.load("selectedQuiz")
+            //const quizId = selectedQuiz.quizId;
+
+            SDK.request({
+                method: "DELETE",
+                url: "/quiz/" + id
+
+
+            }, (err, data) => {
+                if (err) return cb(err);
+                cb(null, data);
+            });
+        },
+        deleteQ: (id, cb) => {
+            SDK.request({
+                    method: "DELETE",
+                    url: "/quiz/" + id
+                },
+                (err, data) => {
+                    if (err) return cb(err);
+
+                    cb(null,data);
+                })
+        },
+        loadQuestions: (callback) =>{
+            //Loading the selected quiz's id from local storage
+            const selectedQuiz = SDK.Storage.load("selectedQuiz");
+            const quizId = selectedQuiz.quizId;
+
+            SDK.request({
+                method: "GET",
+                url: "/question/" + quizId,
+                headers: {
+                    //Header for authorization in server
+                    //authorization: SDK.Storage.load("myToken"),
+                },
+            }, (err, data) => {
+                if (err) return callback(err);
+                callback(null, data);
+            });
+        },
 
         currentQuiz: () => {
             return SDK.Storage.load("quizId");
@@ -171,45 +216,17 @@ const SDK = {
                 method: "GET",
                 url: "/quiz" + "/" + id,
             }, cb);
-        }
-    },
-    deleteQuiz: (quizId, cb) => {
-        //Loading the selected course's id from local storage
-        //const selectedQuiz = SDK.Storage.load("selectedQuiz")
-        //const quizId = selectedQuiz.quizId;
+        },
 
-        SDK.request({
-            method: "DELETE",
-            url: "/quiz" + "/" + quizId,
+        findQuestionById: (id, cb) => {
+            SDK.request({
+                method: "GET",
+                url: "/question" + "/" + id,
+            }, cb);
+        },
 
 
-        }, (err, data) => {
-            if (err) return cb(err);
-            cb(null, data)
-        });
-    },
 
-    loadQuestions: (quizId,questionId, questionTitle, callback) =>{
-        //Loading the selected quiz's id from local storage
-        const SelectedQuestionTitle = SDK.Storage.load("SelectedQuizTitle");
-        const questionTitle = SelectedQuestionTitle.questionTitle;
-
-        SDK.request({
-            method: "GET",
-            url: "/question/",
-            data: {
-                quizId: quizId,
-                questionId: questionId,
-                questionTitle: questionTitle,
-
-            },
-
-
-        }, (err, data) => {
-            if (err) return callback(err);
-            callback(null, data);
-        });
-    },
 
     //Request for loading options for specific question
     loadChoices: (questionId, cb) => {
@@ -218,13 +235,13 @@ const SDK = {
             url: "/choice/" + questionId,
 
 
-        }, (err, options) => {
+        }, (err, choices) => {
             if (err) return cb(err);
-            cb(null, options)
+            cb(null, choices)
         });
     },
 
-
+    },
     Choice: {
         createChoice: (data, cb) => {
             SDK.request({
@@ -233,7 +250,21 @@ const SDK = {
                 data: data,
 
             }, cb);
-        }
+        },
+
+        loadOptions: (questionId, cb) => {
+            SDK.request({
+                method: "GET",
+                url: "/choice/" + questionId,
+                headers: {
+                    //Header for authorization in server
+                    //authorization: SDK.Storage.load("myToken")
+                },
+            }, (err, options) => {
+                if (err) return cb(err);
+                cb(null, options)
+            });
+        },
     },
     question: {
         createQuestion: (data, cb) => {
@@ -312,11 +343,14 @@ const SDK = {
             });
         }
     },
+
     Storage: {
-        prefix: "BookStoreSDK",
+        prefix: "DøkQuizSDK",
+        //Function for storing element in local storage
         persist: (key, value) => {
             window.localStorage.setItem(SDK.Storage.prefix + key, (typeof value === 'object') ? JSON.stringify(value) : value)
         },
+        //Function for loading element from local storage
         load: (key) => {
             const val = window.localStorage.getItem(SDK.Storage.prefix + key);
             try {
@@ -326,8 +360,10 @@ const SDK = {
                 return val;
             }
         },
+        //Function for deleting element in local storage
         remove: (key) => {
             window.localStorage.removeItem(SDK.Storage.prefix + key);
         }
-    }
+    },
+
 };

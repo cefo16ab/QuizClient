@@ -58,11 +58,39 @@ $(document).ready(() => {
                 console.log(quiz);
 
                 $basketTbody.append(`
+
                     <tr>
+                     <td id="deleteQuizButton"><a>${quiz.quizId}</a></td>
                         <td><a href="quiz-page.html?quizId=${quiz.quizId}">${quiz.quizTitle}</a></td>
-                         <td class="deleteQuizButton btn"><button>Delete</button></td>
+                         <td id="deleteQuizButton"><button>Delete</button></td>
                     </tr>
+                    <input class="form-control" id="deleteQ" >
                     `);
+
+                $("#deleteQuizButton").click(() => {
+
+
+                    if (confirm('Are you sure you want to delete quiz with ID ' + "?")) {
+                        SDK.Quiz.deleteQ(quiz, (err) => {
+console.log(data.quizId);
+                            if (err) {
+                                alert("Quiz was not deleted. Error occurred (" + err + ").");
+                                $('#deleteQuizUserInput').val("");
+                            } else {
+                                alert("Quiz (ID) has been deleted!");
+
+                                //$("#basket-tbody").find('tr[data-id=' + quiz + ']').remove();
+                            }
+
+                        });
+
+                    } else {
+                        $('#deleteQuizUserInput').html("");
+                        alert("The quiz was not deleted.")
+                    }
+
+
+                });
             });
         });
     });
@@ -80,33 +108,44 @@ $(document).ready(() => {
 
                 $basketTbody.append(`
                     <tr>
+                     <td id="deleteQuizButton2"><a>${quiz.quizId}</a></td>
                         <td><a href="quiz-page.html?quizId=${quiz.quizId}">${quiz.quizTitle}</a></td>
-                         <td class="deleteQuizButton btn"><button>Delete</button></td>
+                         <td> <button class="deleteQuizButton btn" data-id="${quiz.quizId}">Delete</button></td>
                     </tr>
                     `);
-
+            });
                 $('.deleteQuizButton').on('click', function () {
+                    if (window.confirm("Do you want to delete this quiz?")) {
+                        let id = $(this).data("id");
+                        console.log(id)
 
-                    if(window.confirm("Are you sure you want to delete this quiz?")){
-                        var Quiz = $(this).closest("tr").find("td:eq(0)").text();
-console.log("HEJ");
-                        for (var i = 0; i < quizzes.length; i++){
-                            if (Quiz===quizzes[i].quizId){
-                                SDK.Storage.persist("selectedQuiz", quizzes[i]);
-                                console.log(quizzes[i]);
+
+                        SDK.Quiz.deleteQuiz(id, (err) => {
+                            if (err && err.xhr.status === 401) {
+                                $(".form-group").addClass("has-error");
                             }
-                        }
+                            else if (err) {
+                                console.log("BAd stuff happened")
+                            } else {
+                                alert("The quiz has now been deleted")
+                            }
+                            // if (err) {
+                            //   alert("Quiz was not deleted. Error occurred (" + err + ").");
 
-                        SDK.Quiz.deleteQuiz((err, data)=>{
+                            //} else {
+                            //  alert("Quiz (ID " + quizId + ") has been deleted!");
+
+                            //  $("#modal-tbody").find('tr[data-id=' + deletionQuizID +']').remove();
+
                             console.log("DIG");
                             location.reload($("#quiz-table").show());
+                            // }
 
                         });
-
                     }
 
                 });
-            });
+
         });
     });
 
