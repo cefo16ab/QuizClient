@@ -305,6 +305,24 @@ const SDK = {
             window.location.href = "index.html";
         },
 
+
+
+        deleteUser: (id, cb) =>{
+            SDK.request({
+                    method: "DELETE",
+                    url: "/user/" + id,
+                },
+
+                (err, data) => {
+
+                    if (err) return cb(err);
+
+
+                    cb(null, data);
+                });
+
+
+        },
         login: (username, password, cb) => {
             SDK.request({
                 data: {
@@ -318,15 +336,16 @@ const SDK = {
 
                 //On login-error
                 if (err) return cb(err);
-                console.log(data);
 
                 SDK.Storage.persist("userId", data.userId);
-                SDK.Storage.persist("user", data.user);
+                SDK.Storage.persist("user", data);
 
                 cb(null, data);
 
             });
         },
+
+
 
         loadNavUser: (cb) => {
             $("#nav-container-user").load("navUser.html", () => {

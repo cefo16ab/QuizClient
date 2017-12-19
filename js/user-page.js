@@ -86,5 +86,31 @@ $(document).ready(() => {
         });
     });
 
+    const current = SDK.User.current();
+console.log(current);
+    $("#deleteUser").click(() => {
+
+        var deletionId = current.userId;
+
+
+        SDK.User.deleteUser(deletionId, (err) => {
+
+            if (err && err.xhr.status === 401) {
+                $(".form-group").addClass("has-error");
+            }
+            else if (err) {
+                console.log("Bad stuff happened")
+            } else {
+                alert("Din bruger er nu slettet")
+                window.location.href = "login.html";
+                SDK.Storage.remove("userId");
+                SDK.Storage.remove("userName");
+                SDK.Storage.remove("userType");
+            }
+
+
+
+        });
+    });
 
 });
