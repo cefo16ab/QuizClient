@@ -44,57 +44,8 @@ const SDK = {
         });
 
     },
-    Book: {
-        addToBasket: (book) => {
-            let basket = SDK.Storage.load("basket");
 
-            //Has anything been added to the basket before?
-            if (!basket) {
-                return SDK.Storage.persist("basket", [{
-                    count: 1,
-                    book: book
-                }]);
-            }
 
-            //Does the book already exist?
-            let foundBook = basket.find(b => b.book.id === book.id);
-            if (foundBook) {
-                let i = basket.indexOf(foundBook);
-                basket[i].count++;
-            } else {
-                basket.push({
-                    count: 1,
-                    book: book
-                });
-            }
-
-            SDK.Storage.persist("basket", basket);
-        },
-        findAll: (cb) => {
-            SDK.request({
-                method: "GET",
-                url: "/books",
-                headers: {
-                    filter: {
-                        include: ["authors"]
-                    }
-                }
-            }, cb);
-        },
-        create: (data, cb) => {
-            SDK.request({
-                method: "POST",
-                url: "/books",
-                data: data,
-                headers: {authorization: SDK.Storage.load("tokenId")}
-            }, cb);
-        }
-    },
-    Author: {
-        findAll: (cb) => {
-            SDK.request({method: "GET", url: "/authors"}, cb);
-        }
-    },
     Quiz: {
         createQuiz: (courseId, quizTitle, cb) => {
             SDK.request({
@@ -154,19 +105,13 @@ const SDK = {
                 if (err) return cb(err);
                 console.log(err);
 
-                //SDK.Storage.persist("questionId", data.courseId);
-                //SDK.Storage.persist("questionTitle", data.questionTitle);
 
                 cb(null, data);
             });
         },
 
         deleteQuiz: (id, cb) => {
-            //Loading the selected course's id from local storage
-            //const selectedQuiz = SDK.Storage.load("selectedQuiz")
-            //const quizId = selectedQuiz.quizId;
-            //const selectedQuiz = SDK.Storage.load("selectedQuiz")
-            //const quizId = selectedQuiz.quizId;
+
 
             SDK.request({
                 method: "DELETE",
@@ -178,20 +123,9 @@ const SDK = {
                 cb(null, data);
             });
         },
-        deleteQ: (id, cb) => {
-            SDK.request({
-                    method: "DELETE",
-                    url: "/quiz/" + id
-                },
-                (err, data) => {
-                    if (err) return cb(err);
 
-                    cb(null,data);
-                })
-        },
-        loadQuestions: (quizId, callback) =>{
+        loadQuestions: (quizId, callback) => {
             //Loading the selected quiz's id from local storage
-
 
 
             SDK.request({
@@ -204,9 +138,6 @@ const SDK = {
             });
         },
 
-        currentQuiz: () => {
-            return SDK.Storage.load("quizId");
-        },
 
         findById: (id, cb) => {
             SDK.request({
@@ -229,21 +160,8 @@ const SDK = {
             }, cb);
         },
 
-
-    //Request for loading options for specific question
-    loadChoices: (questionId, cb) => {
-        SDK.request({
-            method: "GET",
-            url: "/choice/" + questionId,
-
-
-        }, (err, choices) => {
-            if (err) return cb(err);
-            cb(null, choices)
-        });
     },
 
-    },
     Choice: {
         createChoice: (data, cb) => {
             SDK.request({
@@ -254,19 +172,6 @@ const SDK = {
             }, cb);
         },
 
-        loadOptions: (questionId, cb) => {
-            SDK.request({
-                method: "GET",
-                url: "/choice/" + questionId,
-                headers: {
-                    //Header for authorization in server
-                    //authorization: SDK.Storage.load("myToken")
-                },
-            }, (err, options) => {
-                if (err) return cb(err);
-                cb(null, options)
-            });
-        },
     },
     question: {
         createQuestion: (data, cb) => {
@@ -279,9 +184,7 @@ const SDK = {
         }
     },
     User: {
-        findAll: (cb) => {
-            SDK.request({method: "GET", url: "/staffs"}, cb);
-        },
+
         current: () => {
             return SDK.Storage.load("user");
         },

@@ -6,6 +6,7 @@ $(document).ready(() => {
     $("#dis-button").click(() => {
 
         $(".quiz-button").hide();
+        $("#deleteUser").hide();
         $("#quiz-table").show();
         SDK.Quiz.findById(1, (err, data) => {
             let quizzes = JSON.parse(data);
@@ -25,6 +26,7 @@ $(document).ready(() => {
 
     $("#it-change-button").click(() => {
         $(".quiz-button").hide();
+        $("#deleteUser").hide();
         $("#quiz-table").show();
 
         SDK.Quiz.findById(2, (err, data) => {
@@ -47,6 +49,7 @@ $(document).ready(() => {
 
     $("#makro-button").click(() => {
         $(".quiz-button").hide();
+        $("#deleteUser").hide();
         $("#quiz-table").show();
 
         SDK.Quiz.findById(3, (err, data) => {
@@ -68,6 +71,7 @@ $(document).ready(() => {
 
     $("#finance-button").click(() => {
         $(".quiz-button").hide();
+        $("#deleteUser").hide();
         $("#quiz-table").show();
 
         SDK.Quiz.findById(4, (err, data) => {
@@ -87,7 +91,7 @@ $(document).ready(() => {
     });
 
     const current = SDK.User.current();
-console.log(current);
+
     $("#deleteUser").click(() => {
 
         var deletionId = current.userId;

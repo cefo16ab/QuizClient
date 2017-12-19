@@ -24,9 +24,10 @@ $(document).ready(() => {
                 else if (err) {
                     console.log("BAd stuff happened")
                 } else {
-                    //refresh($("#inputChoice"));
+                    // clear text
+                    $("#inputChoice").val("");
                     alert("You have now saved the choice. You can now write a new one");
-                    //window.location.href = ("create-choice.html?questionId=" + data.questionId + "&quizId=" + data.quizId);
+                    window.location.href = ("create-choice.html?questionId=" + data.questionId + "&quizId=" + data.quizId);
 
                     const questionId = SDK.getQueryParam("questionId");
                     const quizId = SDK.getQueryParam("quizId");

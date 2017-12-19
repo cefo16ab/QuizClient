@@ -41,8 +41,19 @@ $(document).ready(() => {
             });
         });
     });
+    const current = SDK.User.current();
+    $("#returnBtn").on("click", () => {
+        var back = current.type;
+        console.log(current);
+        if(back==2){
+            console.log("med");
+            window.location.href = "admin-page.html";
+        } else{
+            console.log("dig");
+            window.location.href = "user-page.html";
+        }
 
-
+    });
 
     $("#saveAnswerBtn").on("click", () => {
 
