@@ -7,36 +7,24 @@
     <title>Quiz</title>
 </head>
 <body>
-<nav class="navbar navbar-default">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <a class="navbar-brand">DØKquiz</a>
-        </div>
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-                <li><a href="user.html">Profile</a></li>
-                <li class="active"><a href="admin-page.html"><b>Quiz!</b></a></li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="#" id="logOutBtn">Log out</a></li>
-            </ul>
-        </div>
-    </div>
-</nav>
-
 <div class="container">
-    <h1 class="page-header"></h1>
-    <h4 class="description"></h4>
-    <div class="jumbotron">
-        <table class="table">
-            <tbody id="QuestionList"></tbody>
-        </table>
-        <div class="modal-footer">
-            <button class="btn btn-danger" id="returnBtn">Return to quizzes</button>
-            <button class="btn btn-primary" id="saveAnswerBtn">Submit answers</button>
-            <button class="btn btn-success" id="resultBtn">Show results</button>
-        </div>
-    </div>
+
+    <div class="row" id="nav-container-user"></div>
+
+         <div class="row">
+            <h1 class="page-header"></h1>
+             <h4 class="description"></h4>
+                 <div class="jumbotron">
+                  <table class="table">
+                    <tbody id="QuestionList"></tbody>
+                  </table>
+                     <div class="modal-footer">
+
+                         <button class="btn btn-primary" id="saveAnswerBtn">Submit answers</button>
+                      <button class="btn btn-success" id="resultBtn">Show results</button>
+                     </div>
+                </div>
+         </div>
 </div>
 
 <div class="container">
@@ -85,7 +73,9 @@
 <script src="lib/js/bootstrap.js"></script>
 <script src="js/sdk.js"></script>
 <script src="js/quiz-page.js"></script>
-
+<script>
+    SDK.User.loadNavUser();
+</script>
 
 </body>
 </html>

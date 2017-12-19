@@ -328,6 +328,28 @@ const SDK = {
             });
         },
 
+        loadNavUser: (cb) => {
+            $("#nav-container-user").load("navUser.html", () => {
+                const currentUser = SDK.User.current();
+                if (currentUser) {
+                    $(".navbar-right").html(`
+           
+            <li><a href="#" id="logout-link">Logout</a></li>
+          `);
+
+                } else {
+                    $(".navbar-right").html(`
+            <li><a href="login.html">Log-in <span class="sr-only">(current)</span></a></li>
+          `);
+                }
+                $("#logout-link").click(() => SDK.User.logOut());
+                cb && cb();
+
+
+            });
+
+
+        },
 
 
         loadNav: (cb) => {

@@ -42,10 +42,7 @@ $(document).ready(() => {
         });
     });
 
-    //Listener on return button
-    $("#returnBtn").on("click", () => {
-        window.location.href = "admin-page.html";
-    });
+
 
     $("#saveAnswerBtn").on("click", () => {
 
