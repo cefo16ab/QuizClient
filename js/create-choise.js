@@ -14,7 +14,7 @@ $(document).ready(() => {
         const answer = $(".custom-select").find("option:selected").val();
 
         SDK.Quiz.createChoice(questionId, choiceTitle, answer,(err, data) => {
-console.log(data);
+            console.log(data);
             data = JSON.parse(data);
 
 
@@ -26,7 +26,7 @@ console.log(data);
                 } else {
                     //refresh($("#inputChoice"));
                     alert("You have now saved the choice. You can now write a new one");
-                    window.location.href = ("create-choice.html?questionId=" + data.questionId + "&quizId=" + data.quizId);
+                    //window.location.href = ("create-choice.html?questionId=" + data.questionId + "&quizId=" + data.quizId);
 
                     const questionId = SDK.getQueryParam("questionId");
                     const quizId = SDK.getQueryParam("quizId");
@@ -36,13 +36,15 @@ console.log(data);
 
     });
         $("#back-to-create-question").click(() => {
-
-            window.location.href = ("create-question.html?quizId=" + data.quizId);
+            const quizId = SDK.getQueryParam("quizId");
+            console.log(quizId);
+            window.location.href = ("create-question.html?quizId=" + quizId);
             //const quizId = SDK.getQueryParam("quizId");
         });
 
 
         $("#finish-quiz-button").click(() => {
+
 
             window.location.href = ("admin-page.html");
 

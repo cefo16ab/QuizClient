@@ -9,6 +9,7 @@ $(document).ready(() => {
 
 
     SDK.User.login(username, password, (err, data) => {
+        data = JSON.parse(data);
           if (err && err.xhr.status === 401) {
               $(".form-group").addClass("has-error");
           }

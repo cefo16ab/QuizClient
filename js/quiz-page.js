@@ -5,7 +5,7 @@ $(document).ready(() => {
 
     let quizId = SDK.getQueryParam("quizId");
     let title = SDK.getQueryParam("title");
-    console.log("myQuizId",quizId);
+    console.log("myQuizId", quizId);
     //) SDK.getQueryParam("quizTitle")
 
 
@@ -33,74 +33,107 @@ $(document).ready(() => {
                     console.log(choice);
 
 
-                    $("#"+question.questionId).append(`<p><input type="radio" class="custom-control-input" name="${choice.choiceId}" value="${choice.answer}"> ${choice.choiceTitle} </p>  `)
+                    $("#" + question.questionId).append(`<p><input type="radio" class="answer-radio" name="${choice.choiceId}" value="${choice.answer}"> ${choice.choiceTitle} </p>  `)
 
                     //todo: print choice
 
-            });
-
-
-
-        });
-
-
-    });
-        console.log("DONE loading questions");
-
-/*
-SDK.Quiz.loadQuestions((err, data) => {
-        console.log("1");
-        if (err) throw err;
-        console.log("1");
-        var questions = JSON.parse(data);
-        console.log("2",questions);
-
-        //For each loop for adding all the questions to the table
-        questions.forEach((q) => {
-            var questionTitle = q.questionTitle;
-            var questionId = q.questionId;
-            $(".table").append(`<div id="${questionId}"><p><b>${questionTitle}</b></p></div>`)
-
-            //SDK request for loading all the options
-            SDK.loadOptions(questionId, (err, data) => {
-                if (err) throw err;
-                var options = JSON.parse(data);
-
-                //Function to mix options for a random order
-                //options = shuffle(options);
-
-                //For each loop for adding options to the specific question (with radio buttons)
-                options.forEach((option) => {
-                    $(`#${questionId}`).append(`<p><input type="radio" class="answer-radio" name="choice${questionId}" value="${option.answer}"> ${option.option} </p>`);
                 });
             });
-        });*/
+        });
+    });
+
+    //Listener on return button
+    $("#returnBtn").on("click", () => {
+        window.location.href = "admin-page.html";
+    });
+
+    $("#saveAnswerBtn").on("click", () => {
+
+        let totalQuestions = 0;
+        let correctAnswers = 0;
 
 
-        //Listener on return button
-        $("#returnBtn").on("click", () => {
-            window.location.href = "admin-page.html";
+        //Function to count number of questions answered
+        $(".answer-radio").each(function () {
+            if ($(this).is(":checked")) {
+                totalQuestions++;
+                //Function to count number of correct answers
+                if ($(this).val() == 1) {
+                    correctAnswers++;
+
+                }
+            }
+            console.log(correctAnswers);
         });
 
-        //Listener on save answer button
-        $("#saveAnswerBtn").on("click", () => {
-            let totalQuestions = 0;
-            let correctAnswers = 0;
+//Saving percentage of correct answers as const
+        const quizWidth = correctAnswers / totalQuestions * 100;
+
+        //Modal that shows score, and makes result button appear
+        $('#submitModal').modal('show');
+        //Modal message with progress bar and score from quiz
+        $("#result").append(`
+                    <div><div class="progress">
+                    <div class="progress-bar progress-bar-info progress-bar-striped" style="width:${quizWidth}%"></div></div>
+                    <p>You got <b>${correctAnswers}</b> out of <b>${totalQuestions}</b> questions correct.</p>
+                    <p> You can now click on 'Show results' to see the correct answers on all questions.</p>`);
+
+        //Listener on close button
+        $("#closeBtn").on("click", () => {
+            //Clearing the html of submit modal
+            $("#result").html("");
+            $('#submitModal').modal('hide');
+        });
+
+        $("#resultBtn").show()
+    });
+
+    //Listener on result button
+    $("#resultBtn").on("click", () => {
+        //Result modal appears
+        $('#resultModal').modal('show');
+
+        SDK.Quiz.findQuestionById(quizId, (err, data) => {
+            let questions = JSON.parse(data);
+            if (err) throw err;
 
 
+            //For each loop for adding all the questions to modal
+            questions.forEach((question) => {
+
+                //SDK request for adding the correct answer underneath question
 
 
+                SDK.Quiz.findChoiceById(question.questionId, (err, data) => {
+                    let choices = JSON.parse(data);
+                    if (err) throw err;
 
 
+                    choices.forEach(choice => {
+                        if (choice.answer == 1) {
+                            console.log(choice);
+                            $('#resultDIV').append(`<div id="${question.questionId}"><p><b>${question.questionTitle}</b></p></div>`);
+                            $('#resultDIV').append(`<div id="${question.questionId}"><p><b>${choice.choiceTitle}</b></p></div>`);
+
+                        }
+                    });
+
+                });
+
+                //Listener on close button
+                $("#closeResBtn").on("click", () => {
+                    //Clearing the html of result modal
+                    $("#resultDIV").html("");
+                    $('#resultModal').modal('hide');
+                });
 
 
             });
+
+
+        });
+
     });
 
 
-
-    });
-
-
-
-
+});

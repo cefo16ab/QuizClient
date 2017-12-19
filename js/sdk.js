@@ -35,7 +35,7 @@ const SDK = {
             dataType: "json",
             data: JSON.stringify(options.data),
             success: (data, status, xhr) => {
-                //data = JSON.parse(data);
+
                 cb(null, data, status, xhr);
             },
             error: (xhr, status, errorThrown) => {
@@ -327,6 +327,9 @@ const SDK = {
 
             });
         },
+
+
+
         loadNav: (cb) => {
             $("#nav-container").load("nav.html", () => {
                 const currentUser = SDK.User.current();
@@ -335,6 +338,7 @@ const SDK = {
            
             <li><a href="#" id="logout-link">Logout</a></li>
           `);
+
                 } else {
                     $(".navbar-right").html(`
             <li><a href="login.html">Log-in <span class="sr-only">(current)</span></a></li>
@@ -342,8 +346,14 @@ const SDK = {
                 }
                 $("#logout-link").click(() => SDK.User.logOut());
                 cb && cb();
+
+
             });
+
+
         }
+
+
     },
 
     Storage: {

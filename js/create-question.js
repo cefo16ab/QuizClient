@@ -4,6 +4,7 @@ $(document).ready(() => {
 
 
     const quizId = SDK.getQueryParam("quizId");
+    console.log(quizId);
 
 
     $("#new-question").click(() => {
@@ -13,8 +14,8 @@ $(document).ready(() => {
 
 
 
-        SDK.Quiz.createQuestion( quizId, questionTitle, (err, data) => {
-
+        SDK.Quiz.createQuestion(quizId, questionTitle, (err, data) => {
+            console.log(data);
             data = JSON.parse(data);
 
             if (err && err.xhr.status === 401) {
