@@ -12,7 +12,6 @@ $(document).ready(() => {
             let quizzes = JSON.parse(data);
             if (err) throw err;
             quizzes.forEach(quiz => {
-                console.log(quiz);
 
                 $basketTbody.append(`
                     <tr>
@@ -25,7 +24,7 @@ $(document).ready(() => {
             $('.deleteQuizButton').on('click', function () {
                 if (window.confirm("Do you want to delete this quiz?")) {
                     let id = $(this).data("id");
-                    console.log(id)
+
 
 
                     SDK.Quiz.deleteQuiz(id, (err) => {
@@ -38,7 +37,7 @@ $(document).ready(() => {
                             alert("The quiz has now been deleted")
                         }
 
-                        console.log("DIG");
+
                         location.reload($("#quiz-table").show());
                         // }
 
@@ -58,7 +57,7 @@ $(document).ready(() => {
             let quizzes = JSON.parse(data);
             if (err) throw err;
             quizzes.forEach(quiz => {
-                console.log(quiz);
+
 
                 $basketTbody.append(`
                     <tr>
@@ -71,7 +70,7 @@ $(document).ready(() => {
             $('.deleteQuizButton').on('click', function () {
                 if (window.confirm("Do you want to delete this quiz?")) {
                     let id = $(this).data("id");
-                    console.log(id)
+
 
 
                     SDK.Quiz.deleteQuiz(id, (err) => {
@@ -84,7 +83,7 @@ $(document).ready(() => {
                             alert("The quiz has now been deleted")
                         }
 
-                        console.log("DIG");
+
                         location.reload($("#quiz-table").show());
                         // }
 
@@ -105,7 +104,7 @@ $(document).ready(() => {
             let quizzes = JSON.parse(data);
             if (err) throw err;
             quizzes.forEach(quiz => {
-                console.log(quiz);
+
 
                 $basketTbody.append(`
                     <tr>
@@ -118,7 +117,7 @@ $(document).ready(() => {
             $('.deleteQuizButton').on('click', function () {
                 if (window.confirm("Do you want to delete this quiz?")) {
                     let id = $(this).data("id");
-                    console.log(id)
+
 
 
                     SDK.Quiz.deleteQuiz(id, (err) => {
@@ -131,7 +130,7 @@ $(document).ready(() => {
                             alert("The quiz has now been deleted")
                         }
 
-                        console.log("DIG");
+
                         location.reload($("#quiz-table").show());
                         // }
 
@@ -152,7 +151,7 @@ $(document).ready(() => {
             let quizzes = JSON.parse(data);
             if (err) throw err;
             quizzes.forEach(quiz => {
-                console.log(quiz);
+
 
                 $basketTbody.append(`
                     <tr>
@@ -165,7 +164,7 @@ $(document).ready(() => {
                 $('.deleteQuizButton').on('click', function () {
                     if (window.confirm("Do you want to delete this quiz?")) {
                         let id = $(this).data("id");
-                        console.log(id)
+
 
 
                         SDK.Quiz.deleteQuiz(id, (err) => {
@@ -178,7 +177,7 @@ $(document).ready(() => {
                                 alert("The quiz has now been deleted")
                             }
 
-                            console.log("DIG");
+
                             location.reload($("#quiz-table").show());
                             // }
 

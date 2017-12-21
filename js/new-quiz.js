@@ -17,7 +17,7 @@ $(document).ready(() => {
                 console.log("BAd stuff happened")
             } else {
               window.location.href = ("create-question.html?quizId=" + data.quizId);
-                //"create-question.html"
+
                 const quizId = SDK.getQueryParam("quizId");
 
 

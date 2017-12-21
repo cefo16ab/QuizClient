@@ -39,7 +39,7 @@ $(document).ready(() => {
     });
         $("#back-to-create-question").click(() => {
             const quizId = SDK.getQueryParam("quizId");
-            console.log(quizId);
+
             window.location.href = ("create-question.html?quizId=" + quizId);
             //const quizId = SDK.getQueryParam("quizId");
         });

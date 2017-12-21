@@ -15,7 +15,7 @@ const SDK = {
             }
         }
     },
-    //Hej med dig
+
     serverURL: "http://localhost:7777/api",
 
     request: (options, cb) => {
@@ -57,7 +57,7 @@ const SDK = {
                 },
             }, (err, data) => {
 
-                //On login-error
+
                 if (err) return cb(err);
                 console.log(err);
 
@@ -79,12 +79,10 @@ const SDK = {
                 },
             }, (err, data) => {
 
-                //On login-error
+
                 if (err) return cb(err);
                 console.log(err);
 
-                //SDK.Storage.persist("questionId", data.courseId);
-                //SDK.Storage.persist("questionTitle", data.questionTitle);
 
                 cb(null, data);
             });
@@ -101,7 +99,7 @@ const SDK = {
                 },
             }, (err, data) => {
 
-                //On login-error
+
                 if (err) return cb(err);
                 console.log(err);
 
@@ -125,7 +123,6 @@ const SDK = {
         },
 
         loadQuestions: (quizId, callback) => {
-            //Loading the selected quiz's id from local storage
 
 
             SDK.request({

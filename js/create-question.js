@@ -4,11 +4,10 @@ $(document).ready(() => {
 
 
     const quizId = SDK.getQueryParam("quizId");
-    console.log(quizId);
 
 
     $("#new-question").click(() => {
-       // const questionId = $("#inputQuestion").val();
+
         const questionTitle = $("#inputQuestion").val();
 
 
@@ -25,7 +24,7 @@ $(document).ready(() => {
                 console.log("BAd stuff happened")
             } else {
                 window.location.href = ("create-choice.html?questionId=" + data.questionId + "&quizId=" + data.quizId);
-                //"create-question.html"
+
                 const quizId = SDK.getQueryParam("questionId");
 
 

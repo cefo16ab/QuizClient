@@ -11,7 +11,7 @@ $(document).ready(() => {
     const type = 1;
 
     SDK.User.createUser(firstName, lastName, userName, password, type, (err, data) => {
-                console.log(firstName + lastName + userName + password + type);
+
 
 
 

@@ -12,7 +12,7 @@ $(document).ready(() => {
             let quizzes = JSON.parse(data);
             if (err) throw err;
             quizzes.forEach(quiz => {
-                console.log(quiz);
+
 
                 $basketTbody.append(`
                     <tr>
@@ -33,7 +33,7 @@ $(document).ready(() => {
             let quizzes = JSON.parse(data);
             if (err) throw err;
             quizzes.forEach(quiz => {
-                console.log(quiz);
+
 
                 $basketTbody.append(`
                     <tr>
@@ -56,7 +56,7 @@ $(document).ready(() => {
             let quizzes = JSON.parse(data);
             if (err) throw err;
             quizzes.forEach(quiz => {
-                console.log(quiz);
+
 
                 $basketTbody.append(`
                     <tr>
@@ -78,7 +78,6 @@ $(document).ready(() => {
             let quizzes = JSON.parse(data);
             if (err) throw err;
             quizzes.forEach(quiz => {
-                console.log(quiz);
 
                 $basketTbody.append(`
                     <tr>
