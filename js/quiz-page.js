@@ -24,7 +24,7 @@ $(document).ready(() => {
         questions.forEach(question => {
 
 
-            $(".table").append(`<div style="color:blue;" id="${question.questionId}"><p><b>${question.questionTitle}</b></p></div>`)
+            $(".table").append(`<div style="color:green;" id="${question.questionId}"><p><b>${question.questionTitle}</b></p></div>`)
 
             SDK.Quiz.findChoiceById(question.questionId, (err, data) => {
                 let choices = JSON.parse(data);
@@ -85,11 +85,11 @@ $(document).ready(() => {
                     <div><div class="progress">
                     <div class="progress-bar progress-bar-info progress-bar-striped" style="width:${quizWidth}%"></div></div>
                     <p>You got <b>${correctAnswers}</b> out of <b>${totalQuestions}</b> questions correct.</p>
-                    <p> You can now click on 'Show results' to see the correct answers on all questions.</p>`);
+                    <p> Click on 'Show results' to see the correct answers on all the questions.</p>`);
 
 
         $("#closeBtn").on("click", () => {
-            //Clearing the html of submit modal
+
             $("#result").html("");
             $('#submitModal').modal('hide');
         });
@@ -119,16 +119,16 @@ $(document).ready(() => {
                         if (choice.answer == 1) {
 
                             $('#resultDIV').append(`<div id="${question.questionId}"><p><b>${question.questionTitle}</b></p></div>`);
-                            $('#resultDIV').append(`<div id="${question.questionId}"><p><b>${choice.choiceTitle}</b></p></div>`);
+                            $('#resultDIV').append(`<div id="${question.questionId}"><p>${choice.choiceTitle}</p></div>`);
 
                         }
                     });
 
                 });
 
-                //Listener on close button
+
                 $("#closeResBtn").on("click", () => {
-                    //Clearing the html of result modal
+
                     $("#resultDIV").html("");
                     $('#resultModal').modal('hide');
                 });
