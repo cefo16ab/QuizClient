@@ -43,6 +43,7 @@ $(document).ready(() => {
     });
     const current = SDK.User.current();
     $("#returnBtn").on("click", () => {
+        console.log(current);
         var back = current.type;
         console.log(current);
         if(back==2){

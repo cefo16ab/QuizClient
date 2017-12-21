@@ -16,7 +16,7 @@ $(document).ready(() => {
 
                 $basketTbody.append(`
                     <tr>
-                     <td id="deleteQuizButton2"><a>${quiz.quizId}</a></td>
+                     
                         <td><a href="quiz-page.html?quizId=${quiz.quizId}&title=${quiz.quizTitle}">${quiz.quizTitle}</a></td>
                          <td> <button class="deleteQuizButton btn" data-id="${quiz.quizId}">Delete</button></td>
                     </tr>
@@ -62,7 +62,7 @@ $(document).ready(() => {
 
                 $basketTbody.append(`
                     <tr>
-                     <td id="deleteQuizButton2"><a>${quiz.quizId}</a></td>
+                     
                         <td><a href="quiz-page.html?quizId=${quiz.quizId}&title=${quiz.quizTitle}">${quiz.quizTitle}</a></td>
                          <td> <button class="deleteQuizButton btn" data-id="${quiz.quizId}">Delete</button></td>
                     </tr>
@@ -109,7 +109,7 @@ $(document).ready(() => {
 
                 $basketTbody.append(`
                     <tr>
-                     <td id="deleteQuizButton2"><a>${quiz.quizId}</a></td>
+                    
                         <td><a href="quiz-page.html?quizId=${quiz.quizId}&title=${quiz.quizTitle}">${quiz.quizTitle}</a></td>
                          <td> <button class="deleteQuizButton btn" data-id="${quiz.quizId}">Delete</button></td>
                     </tr>
@@ -156,7 +156,7 @@ $(document).ready(() => {
 
                 $basketTbody.append(`
                     <tr>
-                     <td id="deleteQuizButton2"><a>${quiz.quizId}</a></td>
+                    
                         <td><a href="quiz-page.html?quizId=${quiz.quizId}&title=${quiz.quizTitle}">${quiz.quizTitle}</a></td>
                          <td> <button class="deleteQuizButton btn" data-id="${quiz.quizId}">Delete</button></td>
                     </tr>
