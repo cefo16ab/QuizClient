@@ -300,6 +300,8 @@ const SDK = {
 
     },
 
+
+
     Storage: {
         prefix: "DøkQuizSDK",
         //Function for storing element in local storage
@@ -321,5 +323,6 @@ const SDK = {
             window.localStorage.removeItem(SDK.Storage.prefix + key);
         }
     },
+
 
 };

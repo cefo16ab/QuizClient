@@ -14,8 +14,8 @@ $(document).ready(() => {
     //SDK request for loading selected quiz from local storage
 
 
-    $(".page-header").html(`<h1>${quizId}</h1>`);
-    $(".description").html(`<h4>${title}</h4>`);
+    $(".page-header").html(`<h1>${title}</h1>`);
+
 
 
     SDK.Quiz.findQuestionById(quizId, (err, data) => {
